@@ -14,7 +14,7 @@ class Feedback {
         Feedback.insertOne(this.cnpj, this.client_id, this.type, this.errors, this.message, this.nps);
     }
     
-    static async insertOne(cnpj, client_id, type, errors, message, nps) {
+    static async insertOne(cnpj, client_id, type, errors, message, nps, origin) {
       var document = {
           cnpj: cnpj,
           client_id: client_id,
@@ -22,6 +22,7 @@ class Feedback {
           errors: errors,
           message: message,
           nps: nps,
+          origin: origin,
           created_at: new Date(),
           updated_at: new Date()
       }

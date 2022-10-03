@@ -17,9 +17,10 @@ router.post('/', async (req, res) => {
             req.body.type, 
             req.body.errors,
             req.body.message, 
-            req.body.nps
+            req.body.nps,
+            req.body.origin
         );
-        return res.status(200).json({message: 'Feed saved successfully.'});
+        return res.status(200).json({message: 'Feedback saved successfully.'});
     }
     catch(err){
         return res.status(500).json({message: `${err}`});
