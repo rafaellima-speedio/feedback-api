@@ -8,7 +8,7 @@ const PORT = process.env.APP_PORT;
 
 app.use(express.json());
 
-app.use('/feedback', feedbackController);
+app.use('/v1/feedbacks', feedbackController);
 
 app.listen(
     PORT,

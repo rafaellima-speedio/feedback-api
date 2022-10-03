@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+const feedback = require('../models/feedback')
+
 
 router.get('/', async (req, res) => {
     return res.status(200).json({message: 'ok'});
@@ -8,7 +10,20 @@ router.get('/', async (req, res) => {
 
 
 router.post('/', async (req, res) => {
-    return res.status(200).json({message: 'ok'});
+    try{
+        await feedback.insertOne(
+            req.body.cnpj, 
+            req.body.client_id, 
+            req.body.type, 
+            req.body.errors,
+            req.body.message, 
+            req.body.nps
+        );
+        return res.status(200).json({message: 'Feed saved successfully.'});
+    }
+    catch(err){
+        return res.status(500).json({message: `${err}`});
+    }
 })
 
 

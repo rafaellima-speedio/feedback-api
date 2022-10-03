@@ -14,7 +14,7 @@ class Feedback {
         Feedback.insertOne(this.cnpj, this.client_id, this.type, this.errors, this.message, this.nps);
     }
     
-    static insertOne(cnpj, client_id, type, errors, message, nps) {
+    static async insertOne(cnpj, client_id, type, errors, message, nps) {
       var document = {
           cnpj: cnpj,
           client_id: client_id,
@@ -22,8 +22,8 @@ class Feedback {
           errors: errors,
           message: message,
           nps: nps,
-          created_at: Date.now(),
-          updated_at: Date.now()
+          created_at: new Date(),
+          updated_at: new Date()
       }
   
       Connection.getCollection('feedbacks').insertOne(document, (err, result) => {
