@@ -1,24 +1,22 @@
 const Connection = require('../db/connection');
 
 class Feedback {
-    constructor(cnpj, client_id, type, errors, message, nps) {
+    constructor(cnpj, client_id, errors, message, nps) {
       this.cnpj = cnpj;
       this.client_id = client_id;
-      this.type = type;
       this.errors = errors;
       this.message = message;
       this.nps = nps;
     }
 
     save() {
-        Feedback.insertOne(this.cnpj, this.client_id, this.type, this.errors, this.message, this.nps);
+        Feedback.insertOne(this.cnpj, this.client_id, this.errors, this.message, this.nps);
     }
     
-    static async insertOne(cnpj, client_id, type, errors, message, nps, origin) {
+    static async insertOne(cnpj, client_id, errors, message, nps, origin) {
       var document = {
           cnpj: cnpj,
           client_id: client_id,
-          type: type,
           errors: errors,
           message: message,
           nps: nps,
