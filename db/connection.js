@@ -5,16 +5,16 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 var conn = null;
 
 class Connection {
-    static getConnection() {
+    static async getConnection() {
         if (conn == null) {
-            client.connect();
+            await client.connect();
             conn = client.db("atlas-feedbacks");
         }
         return conn;
     }
 
-    static getCollection(collection) {
-        return Connection.getConnection().collection(collection);
+    static async getCollection(collection) {
+        return (await Connection.getConnection()).collection(collection);
     }
 }
 

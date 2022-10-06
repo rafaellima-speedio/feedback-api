@@ -27,10 +27,20 @@ class Feedback {
           updated_at: new Date()
       }
   
-      Connection.getCollection('feedbacks').insertOne(document, (err, result) => {
+      (await Connection.getCollection('feedbacks')).insertOne(document, (err, result) => {
           if (err) {
               return err;
           }
+          return result;
+      })
+    }
+
+    static async findAll() {
+      return (await Connection.getCollection('feedbacks')).find({}).toArray((err, result) => {
+          if (err) {
+              return err;
+          }
+          console.log(result);
           return result;
       })
     }

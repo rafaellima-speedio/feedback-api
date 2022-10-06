@@ -5,7 +5,14 @@ const feedback = require('../models/feedback')
 
 
 router.get('/', async (req, res) => {
-    return res.status(200).json({message: 'ok'});
+    try{
+        const results = await feedback.findAll();
+        console.log(results);
+        return res.status(200).json({message: 'success'});
+    }
+    catch(err){
+        return res.status(500).json({message: `Failed to get feedbacks: ${err}`});
+    }
 })
 
 
@@ -20,7 +27,7 @@ router.post('/', async (req, res) => {
             req.body.nps,
             req.body.origin
         );
-        return res.status(200).json({message: 'Feedback saved successfully.'});
+        return res.status(200).json({message: 'success'});
     }
     catch(err){
         return res.status(500).json({message: `${err}`});
